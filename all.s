@@ -188,7 +188,8 @@ LED_OFF:
 	movia sp, STACK     							    #  Set stack registers and
 	mov 	fp, sp         							    # frame pointer.
 	# call 	SET_INTERRUPTION						    #	Call Function to set INTERRUPTION
-
+	movia r16, REDLED_BASEADDRESS
+	stwio r7, 0(r16)									# turn LED off
 	# br 		BEGIN
 	br 		PRINTF
 
