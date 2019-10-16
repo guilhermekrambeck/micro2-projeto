@@ -1,12 +1,11 @@
 
-.include	"keycodes.s"	        /* includes EQU for KEY1, KEY2 */
+.include	"main.s"	        /* includes EQU for KEY1, KEY2 */
 .extern	PATTERN	                    /* externally defined variables */
 .extern	KEY_PRESSED	
-
 /********************************************************************************
-Interval timer interrupt service routine
-Shifts a PATTERN being displayed on the HEX displays. The shift direction
-is determined by the external variable KEY_PRESSED.
+* Interval Timer - Interrupt Service Routine
+* Shifts a PATTERN being displayed on the HEX displays. The shift direction
+* is determined by the external variable KEY_PRESSED.
 ********************************************************************************/
 
     .global	INTERVAL_TIMER_ISR

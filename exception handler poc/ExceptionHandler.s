@@ -1,4 +1,9 @@
-/********************************************************************************
+/**************************************************************************************
+* Exception Handler
+* Handles the exception and call corresponding interrupt service
+**************************************************************************************/
+
+/**************************************************************************************
 * RESET SECTION
 * The Monitor Program automatically places the ".reset" section at the reset location
 * specified in the CPU settings in SOPC Builder.
@@ -7,7 +12,7 @@
     movia r2, _start
     jmp r2                          /* branch to main program */
 
-/********************************************************************************
+/**************************************************************************************
 * EXCEPTIONS SECTION
 * The Monitor Program automatically places the ".exceptions" section at the
 * exception location specified in the CPU settings in SOPC Builder.

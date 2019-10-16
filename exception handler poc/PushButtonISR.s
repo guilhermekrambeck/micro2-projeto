@@ -1,12 +1,12 @@
-.include    "keycodes.s"	        /* includes EQU for KEY1, KEY2 */	
+.include    "main.s"	        /* includes EQU for KEY1, KEY2 */	
 .extern	PATTERN	                    /* externally defined variables */	
 .extern	KEY_PRESSED
 
 /********************************************************************************
-Pushbutton - Interrupt Service Routine
-This routine checks which KEY has been pressed. If it is KEY1 or KEY2, it writes this value
-to the global variable KEY_PRESSED. If it is KEY3 then it loads the SW switch values and
-stores in the variable PATTERN
+* Pushbutton - Interrupt Service Routine
+* This routine checks which KEY has been pressed. If it is KEY1 or KEY2, it writes this value
+* to the global variable KEY_PRESSED. If it is KEY3 then it loads the SW switch values and
+* stores in the variable PATTERN
 ********************************************************************************/
 
     .global PUSHBUTTON_ISR 
