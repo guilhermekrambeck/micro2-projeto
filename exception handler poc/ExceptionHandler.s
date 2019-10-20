@@ -2,23 +2,21 @@
 * Exception Handler
 * Handles the exception and call corresponding interrupt service
 **************************************************************************************/
-
+/*.include "IntervalTimerISR.s"*/
+/*.include "Consts.s"*/
+/*.include "PushButtonISR.s"*/
 /**************************************************************************************
 * RESET SECTION
 * The Monitor Program automatically places the ".reset" section at the reset location
 * specified in the CPU settings in SOPC Builder.
 * Note: "ax" is REQUIRED to designate the section as allocatable and executable. */
-    .section .reset, "ax"
-    movia r2, _start
-    jmp r2                          /* branch to main program */
 
 /**************************************************************************************
 * EXCEPTIONS SECTION
 * The Monitor Program automatically places the ".exceptions" section at the
 * exception location specified in the CPU settings in SOPC Builder.
 * Note: "ax" is REQUIRED to designate the section as allocatable and executable. */
-    .section .exceptions, "ax"
-    .global EXCEPTION_HANDLER 
+    .org 0x20
 EXCEPTION_HANDLER:
     subi	sp, sp, 16	            /* make room on the stack */
     stw	et, 0(sp)	
@@ -54,6 +52,5 @@ END_ISR:
     ldw	ra, 8(sp)	                /* needed if call inst is used */	
     ldw	r22, 12(sp)		
     addi	sp, sp, 16		
-
 eret 
 .end

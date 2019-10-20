@@ -1,7 +1,6 @@
-
-.include	"main.s"	        /* includes EQU for KEY1, KEY2 */
-.extern	PATTERN	                    /* externally defined variables */
-.extern	KEY_PRESSED	
+.include "Consts.s"
+/*.extern	PATTERN*/	                    /* externally defined variables */
+/*.extern	KEY_PRESSED*/	
 /********************************************************************************
 * Interval Timer - Interrupt Service Routine
 * Shifts a PATTERN being displayed on the HEX displays. The shift direction
@@ -36,8 +35,10 @@ INTERVAL_TIMER_ISR:
     stwio	r6, 0(r20)	            /* store to HEX3 ... HEX0 */
     stwio	r6, 0(r21)	            /* store to HEX7 ... HEX4 */
 
-    ldw	r4, 0(r23)	                /* check which key has been pressed */
-    movi	r8, KEY1	            /* code to check for KEY1 */
+    movia   r23, 0x10000040
+    ldwio	r4, 0(r23)	                /* check which key has been pressed */
+    movia   r8, 0x00018000
+
     beq	r4, r8, LEFT	            /* for KEY1 pressed, shift right */
     rol	r6, r6, r5	                /* else (for KEY2) pressed, shift left */
     br	END_INTERVAL_TIMER_ISR	

@@ -1,6 +1,6 @@
-.include    "main.s"	        /* includes EQU for KEY1, KEY2 */	
-.extern	PATTERN	                    /* externally defined variables */	
-.extern	KEY_PRESSED
+.include "Consts.s"
+/*.extern	PATTERN	                    *//* externally defined variables */	
+/*.extern	KEY_PRESSED*/
 
 /********************************************************************************
 * Pushbutton - Interrupt Service Routine
@@ -17,7 +17,7 @@ PUSHBUTTON_ISR:
     stw	r11, 8(sp)	
     stw	r12, 12(sp)	
     stw	r13, 16(sp)	
-    movia	r10, 0x10000050	        /* base address of pushbutton KEY parallel port */
+    movia	r10, 0x10000040	        /* base address of pushbutton KEY parallel port */
     ldwio	r11, 0xC(r10)	        /* read edge capture register */
     stwio	r0, 0xC(r10)	        /* clear the interrupt */
     movia	r10, KEY_PRESSED	    /* global variable to return the result */

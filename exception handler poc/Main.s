@@ -1,5 +1,4 @@
-.equ KEY1, 0
-.equ KEY2, 1 
+.include "Consts.s"
 /****************************************************************************************
 * It first starts the interval timer with 33 msec timeouts, 
 * and then enables interrupts from the interval timer and pushbutton KEYs
@@ -19,7 +18,7 @@ _start:
     movia r16, 0x10002000               /* internal timer base address */
 
     /* set the interval timer period for scrolling the HEX displays */
-    movia r12, 0x190000                 /* 1/(50 MHz) × (0x190000) = 33 msec */
+    movia r12, 0x989680                  /* 1/(50 MHz) × (0x989680) = 200 msec */
     sthio r12, 8(r16)                   /* store the low halfword of counter start value */
     srli r12, r12, 16 
     sthio r12, 0xC(r16)                 /* high halfword of counter start value */
@@ -29,7 +28,7 @@ _start:
     sthio r15, 4(r16)
 
     /* write to the pushbutton port interrupt mask register */
-    movia r15, 0x10000050               /* pushbutton key base address */
+    movia r15, 0x10000040               /* switch base address */
     movi r7, 0b01110                    /* set 3 interrupt mask bits (bit 0 is Nios II reset) */ 
     stwio r7, 8(r15)                    /* interrupt mask register is (base + 8) */
 
@@ -54,3 +53,4 @@ KEY_PRESSED:
     .word KEY2                          /* stores code representing pushbutton key pressed */
 
 .end
+
