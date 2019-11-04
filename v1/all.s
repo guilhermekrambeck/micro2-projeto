@@ -140,14 +140,12 @@ LED_ON:
 	ldw 	r10, 12(r8)
 	subi 	r10, r10, 0x30
 
-	# Multiply R9 by 10 and add to R10 (making two (integer) bits into a decimal)
-	# Logic is already explained above
 	slli 	r11, r9, 3
 	slli 	r12, r9, 1
 	add 	r9, r11, r12
 	add 	r9, r9, r10
 
-	# Set bit to turn ON the LED
+
 	addi 	r10, r0, 1
 	sll 	r10, r10, r9
 	or 		r7, r7, r10
