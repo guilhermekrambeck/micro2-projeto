@@ -88,9 +88,9 @@ INTERVAL_TIMER_ISR:
 
 	movia   r23, SWITCH_BASE_ADDRESS
 	ldwio	r4, 0(r23)	                # check which key has been pressed
-	movia   r8, SWITCH_ON			
+	movia   r18, SWITCH_ON			
 
-	beq	r4, r8, LEFT	            	# for SWITCH_ON, shift right
+	beq	r4, r18, LEFT	            	# for SWITCH_ON, shift right
 	rol	r6, r6, r5	                	# else (for SWITCH_OFF), shift left
 	br	END_INTERVAL_TIMER_ISR	
 
@@ -103,8 +103,8 @@ END_INTERVAL_TIMER_ISR:
 	ldw	r4, 4(sp)	
 	ldw	r5, 8(sp)	
 	ldw	r6, 12(sp)	
-	ldw	r8, 16(sp)	
 	ldw	r10, 20(sp)	
+	ldw	r18, 16(sp)	
 	ldw	r20, 24(sp)	
 	ldw	r21, 28(sp)	
 	ldw	r22, 32(sp)	
