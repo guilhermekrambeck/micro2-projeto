@@ -8,22 +8,17 @@
 .equ REDLED_BASEADDRESS,        		0x10000000
 .equ INTERVAL_TIMER_BASEADDRESS,    	0x10002000
 .equ SWITCH_BASE_ADDRESS,       		0x10000040
-.equ SWITCH_ON,							0x00000001
-.equ KEY1, 								0
-.equ KEY2, 								1
+.equ STACK,                     		0x00002000
+.equ HIGHEST_MEMORY_ADDEESS,        	0x007FFFFC
+.equ INTERVAL_TIMER_VALUE,          	0x989680	# 1/(50 MHz) × (0x989680) = 200 msec
 
+.equ SWITCH_ON,							0x00000001
 .equ LED_ON_FUNCTION,					00
 .equ LED_OFF_FUNCTION,					01
 .equ START_LED_ANIMATION_FUNCTION,		10
 .equ STOP_LED_ANIMATION_FUNCTION,		11
 .equ START_DISPLAY_ANIMATION_FUNCTION,	20
 .equ STOP_DISPLAY_ANIMATION_FUNCTION,	21
-
-.equ REDLED_BASEADDRESS,        		0x10000000
-.equ STACK,                     		0x00002000
-.equ HIGHEST_MEMORY_ADDEESS,        	0x007FFFFC
-.equ INTERVAL_TIMER_VALUE,          	0x989680	# 1/(50 MHz) × (0x989680) = 200 msec
-
 /*************************  ExceptionHandler.s  *********************************************/
 
 .org 0x20
@@ -112,6 +107,7 @@ END_INTERVAL_TIMER_ISR:
 ret		
 
 /*************************  LedAnimation.s  *********************************************/
+.text
 .global START_LED_ANIMATION 
 START_LED_ANIMATION:
 	# set up stack pointer 
