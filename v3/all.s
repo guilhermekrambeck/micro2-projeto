@@ -19,8 +19,8 @@
 .equ STOP_LED_ANIMATION_FUNCTION,		11
 .equ START_DISPLAY_ANIMATION_FUNCTION,	20
 .equ STOP_DISPLAY_ANIMATION_FUNCTION,	21
-/*************************  ExceptionHandler.s  *********************************************/
 
+/*************************  ExceptionHandler.s  *********************************************/
 .org 0x20
 EXCEPTION_HANDLER:
 	subi	sp, sp, 16	            	# make room on the stack
